@@ -1,7 +1,18 @@
 <!DOCTYPE html>
+<!--
+  Dhyeodaya — Website
+  Copyright (c) 2026 Ashutosh Kumar Dubey. All rights reserved.
+
+  This software and its source code are the property of Ashutosh Kumar Dubey ("Dhyeodaya").
+  No part of it may be copied, modified, distributed, hosted or used to provide
+  a similar service without the prior written permission of the copyright owner.
+  Viewing this page in a web browser does not grant any licence to its code.
+  Contact: dhyeodaya@gmail.com
+-->
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-o+iAdTTrJkAssne4MJZtQZ9eLCjRa9l/Cxz6qtuJO6I='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self'; media-src 'self' blob: https:; frame-src 'self' blob:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dhyeodaya — Online exam portal for coaching institutes</title>
 <meta name="description" content="Dhyeodaya gives your coaching institute its own online exam portal: live CBT exams, practice, mock tests, previous year papers, daily challenges and report cards — with your logo. तैयारी से सफलता तक.">
@@ -213,7 +224,7 @@
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#">
-      <img src="logo-icon.png" alt="" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+      <img src="logo-icon.png" alt="" data-logo-fallback>
       <span class="mark" aria-hidden="true">ध</span>
       <b>Dhyeodaya</b>
     </a>
@@ -419,7 +430,7 @@
 
 <footer>
   <div class="wrap">
-    <div>© <span id="yr">2026</span> Dhyeodaya · <span class="hi" style="font-size:17px;">तैयारी से सफलता तक</span></div>
+    <div>© <span id="yr">2026</span> Ashutosh Kumar Dubey (Dhyeodaya). All rights reserved. · <span class="hi" style="font-size:17px;">तैयारी से सफलता तक</span></div>
     <div class="fl">
       <a href="#" class="js-student">Student login</a>
       <a href="#" class="js-admin">Institute login</a>
@@ -434,6 +445,9 @@
 </a>
 
 <script>
+// logo fallback (no inline onerror: the security policy blocks inline handlers)
+document.querySelectorAll('img[data-logo-fallback]').forEach(img => { const f = () => { img.style.display = 'none'; if (img.nextElementSibling) img.nextElementSibling.style.display = 'grid'; }; if (img.complete && !img.naturalWidth) f(); else img.addEventListener('error', f); });
+
 /* ======= Change these links when needed ======= */
 const LINKS = {
   whatsapp: '917545818416',                 // WhatsApp number with country code
